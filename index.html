@@ -79,6 +79,83 @@
         color: var(--accent);
       }
 
+      /* ── BURGER ── */
+      .burger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 101;
+      }
+      .burger span {
+        display: block;
+        height: 2px;
+        background: var(--light);
+        border-radius: 2px;
+        transition: transform 0.3s, opacity 0.3s, background 0.2s;
+      }
+      .burger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+        background: var(--accent);
+      }
+      .burger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .burger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+        background: var(--accent);
+      }
+
+      /* ── MOBILE MENU ── */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(23, 23, 23, 0.97);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(232, 160, 32, 0.25);
+        z-index: 99;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+      }
+      .mobile-menu.open {
+        max-height: 300px;
+        padding: 16px 0 24px;
+      }
+      .mobile-menu ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+      }
+      .mobile-menu ul a {
+        display: block;
+        padding: 14px 32px;
+        color: var(--light);
+        text-decoration: none;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(44, 44, 44, 0.5);
+        transition: color 0.2s, background 0.2s;
+      }
+      .mobile-menu ul a:hover {
+        color: var(--accent);
+        background: rgba(232, 160, 32, 0.05);
+      }
+      .mobile-menu ul li:last-child a {
+        border-bottom: none;
+      }
+
       /* ── HERO ── */
       .hero {
         min-height: 100vh;
@@ -589,11 +666,18 @@
         .nav-links {
           display: none;
         }
+        .burger {
+          display: flex;
+        }
+        .mobile-menu {
+          display: block;
+        }
         section {
           padding: 64px 24px;
         }
         .stats {
           grid-template-columns: 1fr 1fr;
+          
         }
         .services-grid {
           grid-template-columns: 1fr 1fr;
@@ -603,6 +687,7 @@
         }
         .step {
           border-right: 1px solid var(--steel);
+          padding: 10px 10px;
         }
         .step:nth-child(2),
         .step:nth-child(4) {
@@ -623,12 +708,13 @@
           text-align: center;
         }
       }
-      @media (max-width: 560px) {
+      @media (max-width: 600px) {
         .services-grid {
           grid-template-columns: 1fr;
         }
         .stats {
           grid-template-columns: 1fr 1fr;
+          padding: 0;
         }
         .form-row {
           grid-template-columns: 1fr;
@@ -649,7 +735,21 @@
         <li><a href="#process">Как работаем</a></li>
         <li><a href="#contact">Контакты</a></li>
       </ul>
+      <button class="burger" aria-label="Меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#services">Техника</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#process">Как работаем</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -835,7 +935,7 @@
           <div class="step-accent"></div>
           <div class="step-title">Оставьте заявку</div>
           <p class="step-text">
-            Позвоните нам, напишите в мессенджер или заполните форму на сайте.
+            Позвоните нам или напишите в мессенджер.
             Опишите объём и характер работ.
           </p>
         </div>
@@ -998,6 +1098,22 @@
         { threshold: 0.1 },
       );
       reveals.forEach((el) => observer.observe(el));
+
+      // Burger menu
+      const burger = document.querySelector(".burger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      burger.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        burger.classList.toggle("open", isOpen);
+        burger.setAttribute("aria-expanded", isOpen);
+      });
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          burger.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        });
+      });
     </script>
   </body>
 </html>
