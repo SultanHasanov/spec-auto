@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>СТРОЙТЕХГЛОБАЛ — Аренда спецтехники</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --black: #171717;
+        --dark: #1a1a1a;
+        --steel: #2c2c2c;
+        --mid: #555;
+        --light: #c8c0b0;
+        --accent: #e8a020;
+        --white: #f4f0eb;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "PT Sans", sans-serif;
+        background: var(--black);
+        color: var(--white);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 64px;
+        background: rgba(14, 14, 14, 0.92);
+        border-bottom: 1px solid rgba(232, 160, 32, 0.25);
+        backdrop-filter: blur(6px);
+      }
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+        color: var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--light);
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+        padding-top: 64px;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 40%;
+        filter: brightness(0.5);
+        display: block;
+      }
+      @media (max-width: 900px) {
+        .hero-bg img {
+          object-position: 65% center;
+        }
+      }
+      @media (max-width: 560px) {
+        .hero-bg img {
+          object-position: 70% center;
+        }
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, rgba(14, 14, 14, 0.6) 0%, transparent 60%),
+          linear-gradient(to top, rgba(14, 14, 14, 1) 0%, transparent 30%);
+      }
+      .hero-content {
+        position: relative;
+        text-align: left;
+        max-width: 800px;
+        padding: 0 48px;
+        animation: fadeUp 0.9s ease both;
+      }
+      .hero-eyebrow {
+        font-size: 0.8rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        line-height: 1;
+        letter-spacing: 4px;
+        color: var(--white);
+        margin-bottom: 24px;
+      }
+      .hero-title span {
+        color: var(--accent);
+      }
+      .hero-sub {
+        font-size: 1.1rem;
+        color: var(--light);
+        max-width: 480px;
+        margin-bottom: 40px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 14px 36px;
+        background: var(--accent);
+        color: var(--black);
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn:hover {
+        background: #f5b030;
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--accent);
+        color: var(--accent);
+        margin-left: 12px;
+      }
+      .btn-outline:hover {
+        background: var(--accent);
+        color: var(--black);
+      }
+
+      /* ── SECTION BASE ── */
+      section {
+        padding: 96px 48px;
+      }
+      .section-label {
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        letter-spacing: 2px;
+        color: var(--white);
+        margin-bottom: 40px;
+      }
+
+      /* ── STATS ── */
+      .stats {
+        background: var(--dark);
+        padding: 48px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background-color: var(--steel);
+      }
+      .stat-item {
+        background: var(--dark);
+        padding: 36px 40px;
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3.2rem;
+        color: var(--accent);
+        letter-spacing: 2px;
+      }
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--light);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* ── SERVICES ── */
+      #services {
+        background: var(--black);
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+      }
+      .service-card {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+        cursor: default;
+      }
+      .service-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.45);
+        transition:
+          filter 0.4s,
+          transform 0.5s;
+      }
+      .service-card:hover img {
+        filter: brightness(0.3);
+        transform: scale(1.04);
+      }
+      .service-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 28px 28px 32px;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.85) 0%,
+          transparent 100%
+        );
+      }
+      .service-icon {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+      }
+      .service-name {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: var(--white);
+      }
+      .service-desc {
+        font-size: 0.88rem;
+        color: var(--light);
+        margin-top: 6px;
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+        line-height: 1.5;
+      }
+      .service-card:hover .service-desc {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .service-tag {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 4px 12px;
+        background: var(--accent);
+        color: var(--black);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 0.3s 0.05s;
+      }
+      .service-card:hover .service-tag {
+        opacity: 1;
+      }
+
+      /* ── ABOUT ── */
+      #about {
+        background: var(--dark);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-img {
+        position: relative;
+      }
+      .about-img img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+      }
+      .about-img::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: -12px;
+        right: 12px;
+        bottom: 12px;
+        border: 2px solid var(--accent);
+        z-index: -1;
+      }
+      .about-text p {
+        color: var(--light);
+        margin-bottom: 20px;
+        font-size: 1rem;
+      }
+      .about-list {
+        list-style: none;
+        margin: 28px 0 36px;
+      }
+      .about-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--steel);
+        color: var(--light);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .about-list li::before {
+        content: "▸";
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* ── HOW IT WORKS ── */
+      #process {
+        background: var(--black);
+      }
+      .process-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border: 1px solid var(--steel);
+      }
+      .step {
+        padding: 40px 32px;
+        border-right: 1px solid var(--steel);
+        position: relative;
+      }
+      .step:last-child {
+        border-right: none;
+      }
+      .step-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 4rem;
+        color: var(--steel);
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+      .step-title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--white);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .step-text {
+        font-size: 0.9rem;
+        color: var(--mid);
+      }
+      .step-accent {
+        width: 32px;
+        height: 3px;
+        background: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: var(--dark);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+      .contact-info h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        color: var(--accent);
+      }
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .contact-item-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--steel);
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        font-size: 1rem;
+      }
+      .contact-item-data strong {
+        display: block;
+        color: var(--white);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .contact-item-data span {
+        color: var(--light);
+        font-size: 0.95rem;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form select {
+        background: var(--steel);
+        border: 1px solid transparent;
+        color: var(--white);
+        padding: 14px 18px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.2s;
+        resize: none;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus,
+      .contact-form select:focus {
+        border-color: var(--accent);
+      }
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: var(--mid);
+      }
+      .contact-form select option {
+        background: var(--steel);
+      }
+      .contact-form textarea {
+        min-height: 120px;
+      }
+      .contact-form .btn {
+        align-self: flex-start;
+        cursor: pointer;
+        border: none;
+        font-family: inherit;
+      }
+
+      /* ── REQUISITES ── */
+      .requisites {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+      .req-block h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-bottom: 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--steel);
+      }
+      .req-row {
+        display: flex;
+        gap: 10px;
+        padding: 7px 0;
+        border-bottom: 1px solid rgba(44, 44, 44, 0.6);
+        font-size: 0.9rem;
+      }
+      .req-row:last-child {
+        border-bottom: none;
+      }
+      .req-key {
+        color: var(--mid);
+        min-width: 120px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
+        padding-top: 2px;
+      }
+      .req-val {
+        color: var(--light);
+        word-break: break-all;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--black);
+        border-top: 1px solid var(--steel);
+        padding: 32px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 3px;
+        color: var(--accent);
+      }
+      .footer-copy {
+        color: var(--mid);
+        font-size: 0.82rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-links a {
+        color: var(--mid);
+        text-decoration: none;
+        font-size: 0.82rem;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s,
+          transform 0.7s;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        nav {
+          padding: 0 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        section {
+          padding: 64px 24px;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .process-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .step {
+          border-right: 1px solid var(--steel);
+        }
+        .step:nth-child(2),
+        .step:nth-child(4) {
+          border-right: none;
+        }
+        .step:nth-child(1),
+        .step:nth-child(2) {
+          border-bottom: 1px solid var(--steel);
+        }
+        #about,
+        #contact {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+      }
+      @media (max-width: 560px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .hero-content {
+          padding: 0 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">СТРОЙТЕХГЛОБАЛ</div>
+      <ul class="nav-links">
+        <li><a href="#services">Техника</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#process">Как работаем</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg">
+        <img
+          src="https://panrent.ru/upload/vidy-spetstekhniki.jpg"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Аренда спецтехники &mdash; с 2008 года</p>
+        <h1 class="hero-title">
+          МОЩНАЯ<br />ТЕХНИКА<br /><span>ПОД КЛЮЧ</span>
+        </h1>
+        <p class="hero-sub">
+          Экскаваторы, самосвалы, краны, бульдозеры и грузовая техника. Работаем
+          по всей Саратовской облости. Выезд в течение 2 часов.
+        </p>
+        <a href="#services" class="btn btn-outline">Наш парк</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat-item reveal">
+        <div class="stat-num">85+</div>
+        <div class="stat-label">Единиц техники</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">16</div>
+        <div class="stat-label">Лет на рынке</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">1200+</div>
+        <div class="stat-label">Завершённых объектов</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Режим работы</div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="reveal"><p class="section-label">Наш парк техники</p></div>
+      <div class="reveal">
+        <h2 class="section-title">Услуги и оборудование</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <img
+            src="https://os1.ru/article/5552-ekskavator-srednego-klassa-chto-eto/Images/05.jpg"
+            alt="Экскаваторы"
+          />
+          <div class="service-info">
+            <div class="service-icon">⚙️</div>
+            <div class="service-name">Экскаваторы</div>
+            <p class="service-desc">
+              Гусеничные и колёсные экскаваторы объёмом ковша от 0.3 до 1.5 м³.
+              Земляные работы, демонтаж, планировка.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img
+            src="https://korib.ru/wp-content/uploads/2022/08/kamaz-samosval-6520.jpg"
+            alt="Самосвалы"
+          />
+          <div class="service-info">
+            <div class="service-icon">🚛</div>
+            <div class="service-name">Самосвалы</div>
+            <p class="service-desc">
+              Самосвалы грузоподъёмностью 10–25 тонн. Вывоз грунта,
+              строительного мусора, доставка сыпучих материалов.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img
+            src="https://os1.ru/article/25042-buldozer-universalnaya-sovremennaya-mashina-syn-prevzoshel-ottsa-chast-2/SHANTUI-DH17-Semi-U-blade.jpg"
+            alt="Бульдозеры"
+          />
+          <div class="service-info">
+            <div class="service-icon">🔧</div>
+            <div class="service-name">Бульдозеры</div>
+            <p class="service-desc">
+              Планировка и рекультивация территорий, расчистка строительных
+              площадок. Гусеничная и колёсная техника.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img
+            src="https://aksokol.ru/files/uploads/files/16-25-32-40-i-50-tonn/25.jpg"
+            alt="Автокраны"
+          />
+          <div class="service-info">
+            <div class="service-icon">🏗️</div>
+            <div class="service-name">Автокраны</div>
+            <p class="service-desc">
+              Краны грузоподъёмностью 16–100 тонн. Монтаж конструкций,
+              перемещение грузов на высоте, стреловые краны.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img
+            src="https://st15.stpulscen.ru/images/product/561/390/254_original.jpg"
+            alt="Минипогрузчики"
+          />
+          <div class="service-info">
+            <div class="service-icon">⛏️</div>
+            <div class="service-name">Погрузчики</div>
+            <p class="service-desc">
+              Фронтальные и телескопические погрузчики. Работа в стеснённых
+              условиях, погрузка и разгрузка материалов.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img
+            src="https://glavrent.ru/upload/iblock/59d/59d6b4f3d365edc54ad445f1fd0964b7.jpg"
+            alt="Буровые установки"
+          />
+          <div class="service-info">
+            <div class="service-icon">🔩</div>
+            <div class="service-name">Буровая техника</div>
+            <p class="service-desc">
+              Буровые установки для устройства свай, скважин и горизонтального
+              бурения. Глубина до 30 м.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-img reveal">
+        <img
+          src="https://vezetnerud.ru/images/product/spectehnika-1.jpg"
+          alt="О компании"
+        />
+      </div>
+      <div class="about-text">
+        <p class="section-label reveal">О компании</p>
+        <h2 class="section-title reveal">
+          СТРОЙТЕХГЛОБАЛ —<br />надёжный партнёр
+        </h2>
+        <p class="reveal">
+          Компания «СТРОЙТЕХГЛОБАЛ» работает на рынке аренды спецтехники с 2008
+          года. За это время мы реализовали более 1 200 проектов — от небольших
+          частных строек до крупных промышленных объектов.
+        </p>
+        <p class="reveal">
+          Весь наш парк проходит регулярное техническое обслуживание. Операторы
+          имеют квалификационные удостоверения и опыт работы не менее 5 лет.
+        </p>
+        <ul class="about-list reveal">
+          <li>Собственный парк без субподрядчиков</li>
+          <li>Страхование техники и гражданской ответственности</li>
+          <li>Работаем с физическими и юридическими лицами</li>
+          <li>Договор и закрывающие документы</li>
+          <li>Контроль выполнения работ на объекте</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <p class="section-label reveal">Порядок работы</p>
+      <h2 class="section-title reveal">Как оформить заявку</h2>
+      <div class="process-steps reveal">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-accent"></div>
+          <div class="step-title">Оставьте заявку</div>
+          <p class="step-text">
+            Позвоните нам, напишите в мессенджер или заполните форму на сайте.
+            Опишите объём и характер работ.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-accent"></div>
+          <div class="step-title">Расчёт стоимости</div>
+          <p class="step-text">
+            Менеджер свяжется в течение 30 минут, уточнит детали и рассчитает
+            стоимость. При необходимости выезжаем на объект.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-accent"></div>
+          <div class="step-title">Договор и оплата</div>
+          <p class="step-text">
+            Заключаем договор, согласовываем сроки и условия оплаты. Работаем с
+            наличными, переводом и по счёту для юрлиц.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-accent"></div>
+          <div class="step-title">Выезд на объект</div>
+          <p class="step-text">
+            Техника прибывает в согласованное время. По окончании работ
+            подписываем акт и предоставляем закрывающие документы.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-info reveal">
+        <p class="section-label">Свяжитесь с нами</p>
+        <h2 class="section-title">Контакты</h2>
+
+        <h3>Телефоны</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-data">
+            <strong>Диспетчерская (24/7)</strong>
+            <span>+7 (495) 123-45-67</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📱</div>
+          <div class="contact-item-data">
+            <strong>WhatsApp / Telegram</strong>
+            <span>+7 (916) 987-65-43</span>
+          </div>
+        </div>
+
+        <h3>Адрес</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-data">
+            <strong>Офис и стоянка техники</strong>
+            <span
+              >Сартовская обл., г. Саратов,<br />ул. Астраханская, д. 102</span
+            >
+          </div>
+        </div>
+
+        <h3>Режим работы</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-data">
+            <strong>Приём заявок</strong>
+            <span>Круглосуточно, без выходных</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-data">
+            <strong>Электронная почта</strong>
+            <span>info@spectekhmash.ru</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- REQUISITES -->
+      <div class="requisites reveal">
+        <div class="req-block">
+          <h3>Реквизиты компании</h3>
+          <div class="req-row">
+            <span class="req-key">Организация</span>
+            <span class="req-val">ООО «СТРОЙТЕХГЛОБАЛ»</span>
+          </div>
+          <div class="req-row">
+            <span class="req-key">Счёт</span>
+            <span class="req-val">40702810729130002134</span>
+          </div>
+          <div class="req-row">
+            <span class="req-key">ИНН</span>
+            <span class="req-val">6453171848</span>
+          </div>
+          <div class="req-row">
+            <span class="req-key">ОГРН</span>
+            <span class="req-val">1226400013113</span>
+          </div>
+          <div class="req-row">
+            <span class="req-key">Ген. директор</span>
+            <span class="req-val">Баймурадов Муса Гайрбекович</span>
+          </div>
+          <div class="req-row">
+            <span class="req-key">Юр. адрес</span>
+            <span class="req-val"
+              >410056, Россия, Саратовская обл., г. Саратов, ул. Астраханская,
+              д. 102, офис 406</span
+            >
+          </div>
+        </div>
+
+        <div class="req-block">
+          <h3>Банковские реквизиты</h3>
+          <div class="req-row">
+            <span class="req-key">Банк</span>
+            <span class="req-val">Филиал «Нижегородский» АО «Альфа-Банк»</span>
+          </div>
+          <div class="req-row">
+            <span class="req-key">БИК</span>
+            <span class="req-val">042202824</span>
+          </div>
+          <div class="req-row">
+            <span class="req-key">К/с</span>
+            <span class="req-val"
+              >30101810200000000824 в Волго-Вятское ГУ Банка России</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">СТРОЙТЕХГЛОБАЛ</div>
+      <p class="footer-copy">© 2026 СТРОЙТЕХГЛОБАЛ. Все права защищены.</p>
+      <div class="footer-links">
+        <a href="#services">Техника</a>
+        <a href="#about">О нас</a>
+        <a href="#contact">Контакты</a>
+      </div>
+    </footer>
+
+    <script>
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+              setTimeout(() => e.target.classList.add("visible"), i * 60);
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      reveals.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
