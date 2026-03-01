@@ -273,6 +273,9 @@
         color: var(--white);
         margin-bottom: 40px;
       }
+      .section-title span {
+        color: var(--accent);
+      }
 
       /* ── STATS ── */
       .stats {
@@ -602,6 +605,84 @@
         word-break: break-all;
       }
 
+      /* ── EXCAVATION ── */
+      #excavation {
+        background: var(--black);
+      }
+      .excavation-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .excavation-text p {
+        color: var(--light);
+        margin-bottom: 18px;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+      .excavation-features {
+        list-style: none;
+        margin: 24px 0;
+      }
+      .excavation-features li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--steel);
+        color: var(--light);
+        font-size: 0.95rem;
+      }
+      .excavation-features li:last-child {
+        border-bottom: none;
+      }
+      .excavation-features li::before {
+        content: "▸";
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .excavation-media {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 6px;
+        align-items: start;
+      }
+      .excavation-media .media-photo {
+        grid-row: 1 / 3;
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        display: block;
+      }
+      .excavation-media video {
+        width: 100%;
+        aspect-ratio: 9/16;
+        object-fit: cover;
+        display: block;
+        background: #000;
+      }
+      @media (max-width: 900px) {
+        .excavation-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .excavation-media {
+          grid-template-columns: 1.4fr 1fr 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .excavation-media {
+          grid-template-columns: 1fr 1fr;
+        }
+        .excavation-media .media-photo {
+          grid-column: 1 / 3;
+          grid-row: auto;
+          aspect-ratio: 4/3;
+        }
+      }
+
       /* ── AUTO SERVICE ── */
       #autoservice {
         background: var(--dark);
@@ -809,6 +890,7 @@
       <div class="nav-logo">СТРОЙТЕХГЛОБАЛ</div>
       <ul class="nav-links">
         <li><a href="#services">Техника</a></li>
+        <li><a href="#excavation">Котлованы</a></li>
         <li><a href="#autoservice">Автосервис</a></li>
         <li><a href="#about">О нас</a></li>
         <li><a href="#process">Как работаем</a></li>
@@ -824,6 +906,7 @@
     <div class="mobile-menu" id="mobileMenu">
       <ul>
         <li><a href="#services">Техника</a></li>
+        <li><a href="#excavation">Котлованы</a></li>
         <li><a href="#autoservice">Автосервис</a></li>
         <li><a href="#about">О нас</a></li>
         <li><a href="#process">Как работаем</a></li>
@@ -983,6 +1066,43 @@
               самосвалами на объект в любых объёмах, по всей России.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCAVATION -->
+    <section id="excavation">
+      <div class="excavation-inner">
+        <div class="excavation-text reveal">
+          <p class="section-label">Земляные работы</p>
+          <h2 class="section-title">РАЗРАБОТКА<br /><span>КОТЛОВАНОВ</span></h2>
+          <p>
+            Компания «СТРОЙТЕХГЛОБАЛ» выполняет полный комплекс работ по разработке
+            котлованов любой сложности — от небольших траншей под фундамент до
+            масштабных выемок грунта на промышленных объектах.
+          </p>
+          <p>
+            Используем современную гусеничную и колёсную технику с опытными
+            операторами. Работаем быстро, точно по проекту, с соблюдением
+            всех норм безопасности.
+          </p>
+          <ul class="excavation-features">
+            <li>Разработка котлованов под фундаменты и подвалы</li>
+            <li>Рытьё траншей для коммуникаций и трубопроводов</li>
+            <li>Планировка и выравнивание строительных площадок</li>
+            <li>Вывоз и утилизация вынутого грунта</li>
+            <li>Работа в стеснённых городских условиях</li>
+            <li>Геодезический контроль глубины и уклонов</li>
+          </ul>
+        </div>
+        <div class="excavation-media reveal">
+          <img
+            src="img/kotlovan-photo.jpg"
+            alt="Разработка котлована"
+            class="media-photo"
+          />
+          <video src="img/kotlovan-video-1.mp4" autoplay muted loop playsinline></video>
+          <video src="img/kotlovan-video-2.mp4" autoplay muted loop playsinline></video>
         </div>
       </div>
     </section>
