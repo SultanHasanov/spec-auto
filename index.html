@@ -320,13 +320,13 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: brightness(0.45);
+        filter: brightness(0.65);
         transition:
           filter 0.4s,
           transform 0.5s;
       }
       .service-card:hover img {
-        filter: brightness(0.3);
+        filter: brightness(0.45);
         transform: scale(1.04);
       }
       .service-info {
@@ -602,6 +602,73 @@
         word-break: break-all;
       }
 
+      /* ── AUTO SERVICE ── */
+      #autoservice {
+        background: var(--dark);
+      }
+      .autoservice-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .autoservice-list {
+        list-style: none;
+        margin: 28px 0 32px;
+      }
+      .autoservice-list li {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--steel);
+        color: var(--light);
+        font-size: 1rem;
+      }
+      .autoservice-list li:last-child {
+        border-bottom: none;
+      }
+      .autoservice-list li::before {
+        content: "✔";
+        color: var(--accent);
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .autoservice-phone {
+        display: inline-block;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2rem;
+        letter-spacing: 3px;
+        color: var(--accent);
+        margin-top: 8px;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .autoservice-phone:hover {
+        opacity: 0.8;
+      }
+      .autoservice-photos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      .autoservice-photos img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s;
+      }
+      .autoservice-photos img:hover {
+        transform: scale(1.03);
+      }
+      @media (max-width: 900px) {
+        .autoservice-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+
       /* ── FOOTER ── */
       footer {
         background: var(--black);
@@ -731,6 +798,7 @@
       <div class="nav-logo">СТРОЙТЕХГЛОБАЛ</div>
       <ul class="nav-links">
         <li><a href="#services">Техника</a></li>
+        <li><a href="#autoservice">Автосервис</a></li>
         <li><a href="#about">О нас</a></li>
         <li><a href="#process">Как работаем</a></li>
         <li><a href="#contact">Контакты</a></li>
@@ -745,6 +813,7 @@
     <div class="mobile-menu" id="mobileMenu">
       <ul>
         <li><a href="#services">Техника</a></li>
+        <li><a href="#autoservice">Автосервис</a></li>
         <li><a href="#about">О нас</a></li>
         <li><a href="#process">Как работаем</a></li>
         <li><a href="#contact">Контакты</a></li>
@@ -762,13 +831,12 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <p class="hero-eyebrow">Аренда спецтехники &mdash; с 2008 года</p>
+        <p class="hero-eyebrow">Аренда спецтехники &mdash; с 2012 года</p>
         <h1 class="hero-title">
-          МОЩНАЯ<br />ТЕХНИКА<br /><span>ПОД КЛЮЧ</span>
+          ОКАЗАНИЕ УСЛУГ<br /><span>СПЕЦТЕХНИКИ</span>
         </h1>
         <p class="hero-sub">
-          Экскаваторы, самосвалы, краны, бульдозеры и грузовая техника. Работаем
-          по всей Саратовской облости. Выезд в течение 2 часов.
+          Экскаваторы, самосвалы, краны, бульдозеры и грузовая техника. Поставка инертных материалов. Работаем по всей России.
         </p>
         <a href="#services" class="btn btn-outline">Наш парк</a>
       </div>
@@ -777,15 +845,15 @@
     <!-- STATS -->
     <div class="stats">
       <div class="stat-item reveal">
-        <div class="stat-num">85+</div>
+        <div class="stat-num">75+</div>
         <div class="stat-label">Единиц техники</div>
       </div>
       <div class="stat-item reveal">
-        <div class="stat-num">16</div>
+        <div class="stat-num">14</div>
         <div class="stat-label">Лет на рынке</div>
       </div>
       <div class="stat-item reveal">
-        <div class="stat-num">1200+</div>
+        <div class="stat-num">800+</div>
         <div class="stat-label">Завершённых объектов</div>
       </div>
       <div class="stat-item reveal">
@@ -890,6 +958,45 @@
             </p>
           </div>
         </div>
+
+        <div class="service-card reveal">
+          <img
+            src="https://k-ppgt.ru/storage/photos/4650/Inertnye-materialy.jpg"
+            alt="Инертные материалы"
+          />
+          <div class="service-info">
+            <div class="service-icon">🪨</div>
+            <div class="service-name">Инертные материалы</div>
+            <p class="service-desc">
+              Поставка песка, щебня, ПГС, отсева и грунта. Доставка
+              самосвалами на объект в любых объёмах, по всей России.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTO SERVICE -->
+    <section id="autoservice">
+      <div class="autoservice-inner">
+        <div class="reveal">
+          <p class="section-label">Автосервис</p>
+          <h2 class="section-title">МБ СЕРВИС —<br />ремонт грузовой техники</h2>
+          <ul class="autoservice-list">
+            <li>Автозапчасти</li>
+            <li>ТО грузовой техники</li>
+            <li>Ремонт двигателя</li>
+            <li>Ремонт трансмиссии</li>
+            <li>Ремонт ходовой части</li>
+          </ul>
+          <a href="tel:+79157009595" class="autoservice-phone">+7 915-700-95-95</a>
+        </div>
+        <div class="autoservice-photos reveal">
+          <img src="img/service-1.jpg" alt="Автосервис МБ Сервис" />
+          <img src="img/service-2.jpg" alt="Ремонт грузовой техники" />
+          <img src="img/service-3.jpg" alt="ТО грузовиков" />
+          <img src="img/service-4.jpg" alt="Автозапчасти" />
+        </div>
       </div>
     </section>
 
@@ -907,16 +1014,16 @@
           СТРОЙТЕХГЛОБАЛ —<br />надёжный партнёр
         </h2>
         <p class="reveal">
-          Компания «СТРОЙТЕХГЛОБАЛ» работает на рынке аренды спецтехники с 2008
-          года. За это время мы реализовали более 1 200 проектов — от небольших
+          Компания «СТРОЙТЕХГЛОБАЛ» работает на рынке аренды спецтехники с 2012
+          года. За это время мы реализовали более 800 проектов — от небольших
           частных строек до крупных промышленных объектов.
         </p>
         <p class="reveal">
           Весь наш парк проходит регулярное техническое обслуживание. Операторы
-          имеют квалификационные удостоверения и опыт работы не менее 5 лет.
+          имеют квалификационные удостоверения и опыт работы не менее 10-12 лет.
         </p>
         <ul class="about-list reveal">
-          <li>Собственный парк без субподрядчиков</li>
+          <li>Собственный авто парк</li>
           <li>Страхование техники и гражданской ответственности</li>
           <li>Работаем с физическими и юридическими лицами</li>
           <li>Договор и закрывающие документы</li>
@@ -980,14 +1087,14 @@
           <div class="contact-item-icon">📞</div>
           <div class="contact-item-data">
             <strong>Диспетчерская (24/7)</strong>
-            <span>+7 (495) 123-45-67</span>
+            <a href="tel:+79287406929" style="color:inherit;text-decoration:none;">+7 928 740-69-29</a>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon">📱</div>
           <div class="contact-item-data">
             <strong>WhatsApp / Telegram</strong>
-            <span>+7 (916) 987-65-43</span>
+            <a href="tel:+79287406929" style="color:inherit;text-decoration:none;">+7 928 740-69-29</a>
           </div>
         </div>
 
